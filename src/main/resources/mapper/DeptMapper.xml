@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangkun.mapper.DeptMapper">
+
+    <!--Dept getDeptById(@Param("deptId") Integer deptId);-->
+    <select id="getDeptById" resultType="dept">
+        select *
+        from t_dept
+        where dept_id = #{deptId}
+    </select>
+
+    <!--List<Dept> getAllDeptByPage();-->
+    <select id="getAllDeptByPage" resultType="dept">
+        select *
+        from t_dept
+    </select>
+
+    <!--Boolean insertDept(Dept dept);-->
+    <insert id="insertDept">
+        insert into t_dept
+        values (null, #{dept.deptName}, #{dept.manager}, #{dept.allNum}, #{dept.remark})
+    </insert>
+
+    <!--Boolean removeDeptByIds(Integer[] ids);-->
+    <delete id="removeDeptByIds">
+        delete from t_dept where
+        <foreach collection="ids" item="deptId" separator="or">
+            dept_id = #{deptId}
+        </foreach>
+    </delete>
+
+    <!--Boolean updateDept(@Param("dept") Dept dept);-->
+    <update id="updateDept">
+        update t_dept
+        set dept_name=#{dept.deptName},
+            manager=#{dept.manager},
+            all_num=#{dept.allNum},
+            remark=#{dept.remark}
+        where dept_id = #{dept.deptId}
+    </update>
+
+    <!--List<Dept> search(@Param("dept") Dept dept);-->
+    <select id="search" resultType="dept">
+        select * from t_dept
+        <where>
+            <if test="dept.deptName != null and dept.deptName != ''">
+                dept_name = #{dept.deptName}
+            </if>
+        </where>
+        <where>
+            <if test="dept.manager != null and dept.manager != ''">
+                manager = #{dept.manager}
+            </if>
+        </where>
+    </select>
+</mapper>

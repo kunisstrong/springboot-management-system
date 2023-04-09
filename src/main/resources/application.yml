@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/management_system
+      username: root
+      password: wangkun1
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.wangkun.domain
+  configuration:
+    # 实体类属性与数据库字段匹配时忽略大小写
+    map-underscore-to-camel-case: true
+server:
+  port: 80
+# pageHelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
