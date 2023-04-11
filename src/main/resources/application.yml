@@ -12,7 +12,7 @@ mybatis:
     # 实体类属性与数据库字段匹配时忽略大小写
     map-underscore-to-camel-case: true
 server:
-  port: 80
+  port: 9100
 # pageHelper
 pagehelper:
   helperDialect: mysql

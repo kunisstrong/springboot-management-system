@@ -6,6 +6,7 @@ import com.wangkun.service.impl.DeptService;
 import com.wangkun.vo.PageRequest;
 import com.wangkun.vo.PageResult;
 import com.wangkun.vo.ResponseVo;
+import com.wangkun.vo.SearchParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,11 @@ public class DeptController {
         return ResponseVo.success(deptService.getAllDeptByPage(pageQuery));
     }
 
+    @PostMapping("search")
+    public ResponseVo<PageResult> search(@RequestBody SearchParams searchParams) {
+        return ResponseVo.success(deptService.search(searchParams));
+    }
+
     @PostMapping("save")
     public ResponseVo<Boolean> saveDept(@RequestBody Dept dept) {
         return ResponseVo.success(deptService.saveDept(dept));
@@ -44,8 +50,5 @@ public class DeptController {
         return ResponseVo.success(deptService.updateDept(dept));
     }
 
-//    @PostMapping("search")
-//    public Result search() {
-//
-//    }
+
 }

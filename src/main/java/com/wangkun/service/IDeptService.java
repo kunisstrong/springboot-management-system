@@ -3,6 +3,7 @@ package com.wangkun.service;
 import com.wangkun.domain.Dept;
 import com.wangkun.vo.PageRequest;
 import com.wangkun.vo.PageResult;
+import com.wangkun.vo.SearchParams;
 
 import java.util.List;
 
@@ -25,5 +26,7 @@ public interface IDeptService {
     Boolean delDeptByIds(List<Integer> ids);
 
     Boolean updateDept(Dept dept);
+
+    PageResult search(SearchParams searchParams);
 
 }

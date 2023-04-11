@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 public class TestDeptMapper {
 
@@ -15,5 +17,13 @@ public class TestDeptMapper {
     public void testGetDeptById() {
         Dept deptById = deptMapper.getDeptById(18);
         System.out.println(deptById);
+    }
+
+    @Test
+    public void testSearch() {
+        Dept dept = new Dept();
+        dept.setDeptName("前端研");
+        List<Dept> search = deptMapper.search(dept);
+        System.out.println(search);
     }
 }
