@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangkun.mapper.EmpMapper">
+
+    <resultMap id="getAllEmpAndDeptSelect" type="emp">
+        <id column="emp_id" property="empId"/>
+        <result column="emp_name" property="empName"/>
+        <result column="sex" property="sex"/>
+        <result column="entry_date" property="entryDate"/>
+        <result column="position" property="position"/>
+        <result column="age" property="age"/>
+        <result column="salary" property="salary"/>
+        <result column="dept_id" property="deptId"/>
+        <association property="dept"
+                     column="dept_id"
+                     select="com.wangkun.mapper.DeptMapper.getDeptById"></association>
+    </resultMap>
+    <!--List<EmpAndDeptVo> getAllEmp();-->
+    <select id="getAllEmp" resultMap="getAllEmpAndDeptSelect">
+        select *
+        from t_emp
+    </select>
+</mapper>

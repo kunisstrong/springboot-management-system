@@ -26,4 +26,10 @@ public class TestDeptMapper {
         List<Dept> search = deptMapper.search(dept);
         System.out.println(search);
     }
+
+    @Test
+    public void testListChooseProp(){
+        List<Dept> allDept = deptMapper.getAllDept();
+        allDept.stream().forEach(System.out::println);
+    }
 }

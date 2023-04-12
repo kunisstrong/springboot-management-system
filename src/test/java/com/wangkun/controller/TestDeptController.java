@@ -11,4 +11,9 @@ public class TestDeptController {
 
     @Test
     public void testSearch(){}
+
+    @Test
+    public void testListDeptSelect(){
+        System.out.println(deptController.listDeptSelect());
+    }
 }

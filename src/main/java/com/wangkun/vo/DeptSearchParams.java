@@ -3,7 +3,7 @@ package com.wangkun.vo;
 import lombok.Data;
 
 @Data
-public class SearchParams extends PageRequest {
+public class DeptSearchParams extends PageRequest {
     private Integer deptId;
 
     private String deptName;

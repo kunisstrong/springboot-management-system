@@ -11,7 +11,9 @@ import java.util.List;
 public interface DeptMapper {
     Dept getDeptById(@Param("deptId") Integer deptId);
 
-    /* 分页查询所有dept */
+    /**
+     * 分页查询所有dept
+     */
     List<Dept> getAllDeptByPage();
 
     /* 新增 */
@@ -40,5 +42,7 @@ public interface DeptMapper {
      */
     List<Dept> search(@Param("dept") Dept dept);
 
+    /* 获取所有部门 */
+    List<Dept> getAllDept();
 }
 

@@ -8,7 +8,7 @@ import com.wangkun.service.IDeptService;
 import com.wangkun.vo.PageRequest;
 import com.wangkun.vo.PageResult;
 import com.wangkun.vo.PageUtils;
-import com.wangkun.vo.SearchParams;
+import com.wangkun.vo.DeptSearchParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,9 +66,19 @@ public class DeptService implements IDeptService {
         return PageUtils.getPageResult(getAllDeptPageInfo(pageRequest));
     }
 
+    /**
+     * 搜索
+     *
+     * @param searchParams
+     * @return
+     */
     @Override
-    public PageResult search(SearchParams searchParams) {
+    public PageResult search(DeptSearchParams searchParams) {
         return PageUtils.getPageResult(getSearchPageInfo(searchParams));
+    }
+
+    public List<Dept> getAllDept(){
+        return deptMapper.getAllDept();
     }
 
     /**
@@ -85,7 +95,13 @@ public class DeptService implements IDeptService {
         return new PageInfo<>(sysMenus);
     }
 
-    private PageInfo<Dept> getSearchPageInfo(SearchParams searchParams) {
+    /**
+     * 调用分页插件 搜索
+     *
+     * @param searchParams
+     * @return
+     */
+    private PageInfo<Dept> getSearchPageInfo(DeptSearchParams searchParams) {
         int pageNum = searchParams.getPageNum();
         int pageSize = searchParams.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
@@ -95,4 +111,6 @@ public class DeptService implements IDeptService {
         List<Dept> sysMenus = deptMapper.search(dept);
         return new PageInfo<>(sysMenus);
     }
+
+
 }

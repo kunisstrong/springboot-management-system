@@ -1,15 +1,12 @@
 package com.wangkun.controller;
 
-import com.wangkun.controller.utils.Result;
 import com.wangkun.domain.Dept;
 import com.wangkun.service.impl.DeptService;
-import com.wangkun.vo.PageRequest;
-import com.wangkun.vo.PageResult;
-import com.wangkun.vo.ResponseVo;
-import com.wangkun.vo.SearchParams;
+import com.wangkun.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,7 +28,7 @@ public class DeptController {
     }
 
     @PostMapping("search")
-    public ResponseVo<PageResult> search(@RequestBody SearchParams searchParams) {
+    public ResponseVo<PageResult> search(@RequestBody DeptSearchParams searchParams) {
         return ResponseVo.success(deptService.search(searchParams));
     }
 
@@ -50,5 +47,17 @@ public class DeptController {
         return ResponseVo.success(deptService.updateDept(dept));
     }
 
+    @GetMapping("listDeptSelect")
+    public ResponseVo<List<DeptSelectVo>> listDeptSelect() {
+        List<DeptSelectVo> result = new ArrayList<>();
+        List<Dept> allDept = deptService.getAllDept();
 
+        for (Dept dept : allDept) {
+            DeptSelectVo deptVo = new DeptSelectVo();
+            deptVo.setDeptId(dept.getDeptId());
+            deptVo.setDeptName(dept.getDeptName());
+            result.add(deptVo);
+        }
+        return ResponseVo.success(result);
+    }
 }
