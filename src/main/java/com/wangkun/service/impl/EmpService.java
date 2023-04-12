@@ -22,6 +22,14 @@ public class EmpService implements IEmpService {
     private EmpMapper empMapper;
 
     /**
+     * 更新
+     */
+    @Override
+    public Boolean updateEmp(Emp emp) {
+        return empMapper.updateEmp(emp);
+    }
+
+    /**
      * 分页查询所有员工
      *
      * @param pageRequest
@@ -31,6 +39,7 @@ public class EmpService implements IEmpService {
     public PageResult getAllDeptByPage(PageRequest pageRequest) {
         return PageUtils.getPageResult(getAllEmp(pageRequest));
     }
+
 
     /**
      * 调用分页插件 所有员工
@@ -44,19 +53,7 @@ public class EmpService implements IEmpService {
         PageHelper.startPage(pageNum, pageSize);
 
         List<Emp> allEmp = empMapper.getAllEmp();
-        ArrayList<EmpAndDeptVo> empAndDeptVos = new ArrayList<>();
-        for (Emp emp : allEmp) {
-            EmpAndDeptVo empAndDeptVo = new EmpAndDeptVo();
-            empAndDeptVo.setEmpId(emp.getEmpId());
-            empAndDeptVo.setEmpName(emp.getEmpName());
-            empAndDeptVo.setAge(emp.getAge());
-            empAndDeptVo.setSex(emp.getSex());
-            empAndDeptVo.setDeptName(emp.getDept().getDeptName());
-            empAndDeptVo.setSalary(emp.getSalary());
-            empAndDeptVo.setEntryDate(emp.getEntryDate());
-            empAndDeptVo.setPosition(emp.getPosition());
-            empAndDeptVos.add(empAndDeptVo);
-        }
-        return new PageInfo<>(empAndDeptVos);
+
+        return new PageInfo<>(allEmp);
     }
 }

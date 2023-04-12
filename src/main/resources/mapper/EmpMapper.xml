@@ -22,4 +22,17 @@
         select *
         from t_emp
     </select>
+
+    <!--Boolean updateEmp(@Param("emp") Emp emp);-->
+    <update id="updateEmp">
+        update t_emp
+        set emp_name   = #{emp.empName},
+            sex        = #{emp.sex},
+            entry_date = #{emp.entryDate},
+            position   = #{emp.position},
+            age        = #{emp.age},
+            salary     = #{emp.salary},
+            dept_id    = #{emp.deptId}
+        where emp_id = #{emp.empId}
+    </update>
 </mapper>
