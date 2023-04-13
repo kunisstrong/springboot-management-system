@@ -7,12 +7,12 @@ import com.wangkun.domain.Emp;
 import com.wangkun.mapper.EmpMapper;
 import com.wangkun.service.IEmpService;
 import com.wangkun.vo.*;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import com.wangkun.service.impl.utils.PageInfoUtil;
 
 @Service
 public class EmpService implements IEmpService {
@@ -54,6 +54,12 @@ public class EmpService implements IEmpService {
         return PageUtils.getPageResult(getAllEmp(pageRequest));
     }
 
+    /**
+     * 调用分页插件 搜索
+     *
+     * @param empSearchParams
+     * @return
+     */
     private PageInfo<EmpAndDeptVo> searchByPage(EmpSearchParams empSearchParams) {
         int pageNum = empSearchParams.getPageNum();
         int pageSize = empSearchParams.getPageSize();
@@ -65,24 +71,7 @@ public class EmpService implements IEmpService {
         emp.setDeptId(empSearchParams.getDeptId());
         List<Emp> searchEmp = empMapper.search(emp);
 
-        List<EmpAndDeptVo> empAndDeptVoList = new ArrayList<>();
-
-        for (Emp searchEmpItem : searchEmp) {
-            EmpAndDeptVo empAndDeptVo = new EmpAndDeptVo();
-            BeanUtils.copyProperties(searchEmpItem, empAndDeptVo);
-            empAndDeptVo.setDeptName(searchEmpItem.getDept().getDeptName());
-            empAndDeptVoList.add(empAndDeptVo);
-        }
-        PageInfo<EmpAndDeptVo> empAndDeptVoListPageInfo = new PageInfo<>(empAndDeptVoList);
-        if (searchEmp instanceof Page) {
-            Page<Emp> page = (Page<Emp>) searchEmp;
-            empAndDeptVoListPageInfo.setTotal(page.getTotal());
-            empAndDeptVoListPageInfo.setPageNum(page.getPageNum());
-            empAndDeptVoListPageInfo.setPageSize(page.getPageSize());
-            empAndDeptVoListPageInfo.setPages(page.getPages());
-        }
-
-        return empAndDeptVoListPageInfo;
+        return PageInfoUtil.pageInfoUtil(searchEmp);
     }
 
     /**
@@ -98,27 +87,8 @@ public class EmpService implements IEmpService {
         // allEmp有我们要的所有信息，包括分页的数据
         List<Emp> allEmp = empMapper.getAllEmp();
 
-        List<EmpAndDeptVo> empAndDeptVoList = new ArrayList<>();
-
-        for (Emp emp : allEmp) {
-            EmpAndDeptVo empAndDeptVo = new EmpAndDeptVo();
-            BeanUtils.copyProperties(emp, empAndDeptVo);
-            empAndDeptVo.setDeptName(emp.getDept().getDeptName());
-            empAndDeptVoList.add(empAndDeptVo);
-        }
-
-        PageInfo<EmpAndDeptVo> empAndDeptVoListPageInfo = new PageInfo<>(empAndDeptVoList);
-        if (allEmp instanceof Page) {
-            Page<Emp> page = (Page<Emp>) allEmp;
-            empAndDeptVoListPageInfo.setTotal(page.getTotal());
-            empAndDeptVoListPageInfo.setPageNum(page.getPageNum());
-            empAndDeptVoListPageInfo.setPageSize(page.getPageSize());
-            empAndDeptVoListPageInfo.setPages(page.getPages());
-        }
-        return empAndDeptVoListPageInfo;
+        return PageInfoUtil.pageInfoUtil(allEmp);
     }
 
 
 }
-
-

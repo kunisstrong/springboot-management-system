@@ -61,10 +61,10 @@
                 emp_name like concat('%', #{emp.empName}, '%')
             </if>
             <if test="emp.deptId != null and emp.deptId != ''">
-                and emp.deptId like concat('%', #{emp.deptId}, '%')
+                and dept_id like concat('%', #{emp.deptId}, '%')
             </if>
             <if test="emp.position != null and emp.position != ''">
-                and emp.position like concat('%', #{emp.position}, '%')
+                and position like concat('%', #{emp.position}, '%')
             </if>
         </where>
     </select>
