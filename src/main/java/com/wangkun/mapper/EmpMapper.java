@@ -15,4 +15,11 @@ public interface EmpMapper {
 
     /* 更新 */
     Boolean updateEmp(@Param("emp") Emp emp);
+
+    /* 删除 */
+    Boolean delEmpByIds(@Param("ids") List<Integer> ids);
+
+    Boolean insertEmp(@Param("emp") Emp emp);
+
+    List<Emp> search(@Param("emp") Emp emp);
 }

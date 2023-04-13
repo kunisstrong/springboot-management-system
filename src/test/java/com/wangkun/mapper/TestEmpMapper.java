@@ -19,6 +19,5 @@ public class TestEmpMapper {
         for (Emp emp : empMapper.getAllEmp()) {
             System.out.println(emp);
         }
-
     }
 }

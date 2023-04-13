@@ -1,17 +1,18 @@
 package com.wangkun.domain;
 
-import com.sun.org.apache.xpath.internal.objects.XString;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class Emp {
-    private Integer empId;
-    private String empName;
-    private String sex;
-    private String entryDate;
-    private String position;
-    private Integer age;
-    private Integer salary;
-    private Integer deptId;
-    private Dept dept;
+    public Integer empId;
+    public String empName;
+    public String sex;
+    public Date entryDate;
+    public String position;
+    public Integer age;
+    public Integer salary;
+    public Integer deptId;
+    public Dept dept;
 }

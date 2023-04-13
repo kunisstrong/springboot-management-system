@@ -35,4 +35,38 @@
             dept_id    = #{emp.deptId}
         where emp_id = #{emp.empId}
     </update>
+
+    <!--Boolean delEmpByIds(@Param("ids") List<Integer> ids);-->
+    <delete id="delEmpByIds">
+        delete
+        from t_emp
+        where
+        <foreach collection="ids" item="empId" separator="or">
+            emp_id = #{empId}
+        </foreach>
+    </delete>
+
+    <!--Boolean insertEmp(@Param("emp") Emp emp);-->
+    <insert id="insertEmp">
+        insert into t_emp
+        values (null, #{emp.empName}, #{emp.sex}, #{emp.entryDate}, #{emp.position}, #{emp.age}, #{emp.salary},
+                #{emp.deptId})
+    </insert>
+
+    <!--List<Emp> search(@Param("emp") Emp emp);-->
+    <select id="search" resultMap="getAllEmpAndDeptSelect">
+        select * from t_emp
+        <where>
+            <if test="emp.empName != null and emp.empName != ''">
+                emp_name like concat('%', #{emp.empName}, '%')
+            </if>
+            <if test="emp.deptId != null and emp.deptId != ''">
+                and emp.deptId like concat('%', #{emp.deptId}, '%')
+            </if>
+            <if test="emp.position != null and emp.position != ''">
+                and emp.position like concat('%', #{emp.position}, '%')
+            </if>
+        </where>
+    </select>
+
 </mapper>
