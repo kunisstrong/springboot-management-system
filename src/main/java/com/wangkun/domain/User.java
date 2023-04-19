@@ -2,6 +2,8 @@ package com.wangkun.domain;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class User {
     private Integer userId;
@@ -12,5 +14,5 @@ public class User {
     private String email;
     private String address;
     private Integer status;
-    private String createTime;
+    private Date createTime;
 }

@@ -9,7 +9,7 @@ import org.springframework.beans.BeanUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageInfoUtil {
+public class EmpPageInfoUtil {
 
     public static PageInfo<EmpAndDeptVo> pageInfoUtil(List<Emp> allEmp) {
         List<EmpAndDeptVo> empAndDeptVoList = new ArrayList<>();

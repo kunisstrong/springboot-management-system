@@ -105,6 +105,7 @@ public class DeptService implements IDeptService {
         int pageNum = searchParams.getPageNum();
         int pageSize = searchParams.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
+
         Dept dept = new Dept();
         dept.setDeptName(searchParams.getDeptName());
         dept.setManager(searchParams.getManager());

@@ -1,6 +1,5 @@
 package com.wangkun.service.impl;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wangkun.domain.Emp;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import com.wangkun.service.impl.utils.PageInfoUtil;
+import com.wangkun.service.impl.utils.EmpPageInfoUtil;
 
 @Service
 public class EmpService implements IEmpService {
@@ -71,7 +70,7 @@ public class EmpService implements IEmpService {
         emp.setDeptId(empSearchParams.getDeptId());
         List<Emp> searchEmp = empMapper.search(emp);
 
-        return PageInfoUtil.pageInfoUtil(searchEmp);
+        return EmpPageInfoUtil.pageInfoUtil(searchEmp);
     }
 
     /**
@@ -87,7 +86,7 @@ public class EmpService implements IEmpService {
         // allEmp有我们要的所有信息，包括分页的数据
         List<Emp> allEmp = empMapper.getAllEmp();
 
-        return PageInfoUtil.pageInfoUtil(allEmp);
+        return EmpPageInfoUtil.pageInfoUtil(allEmp);
     }
 
 
