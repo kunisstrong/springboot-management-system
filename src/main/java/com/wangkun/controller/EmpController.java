@@ -22,6 +22,7 @@ public class EmpController {
      */
     @PostMapping("list")
     public ResponseVo<PageResult> getAllEmpByPage(@RequestBody PageRequest pageRequest) {
+        System.out.println("请求进来了");
         return ResponseVo.success(empService.getAllDeptByPage(pageRequest));
     }
 
@@ -63,5 +64,4 @@ public class EmpController {
     public ResponseVo<Boolean> saveEmp(@RequestBody Emp emp) {
         return ResponseVo.success(empService.saveEmp(emp));
     }
-
 }

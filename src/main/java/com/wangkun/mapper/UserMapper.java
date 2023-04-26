@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     /* 查询所有user */
-    List<User> getAllUser();
+    List<User> getAllUser(@Param("user") User user);
 
     /* 更新 */
     Boolean updateUser(@Param("user") User user);

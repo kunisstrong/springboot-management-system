@@ -9,6 +9,7 @@ import com.wangkun.service.IUserService;
 import com.wangkun.vo.PageRequest;
 import com.wangkun.vo.PageResult;
 import com.wangkun.vo.PageUtils;
+import com.wangkun.vo.UserSearchParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,15 +37,20 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public PageResult search(PageRequest pageRequest) {
-        return PageUtils.getPageResult(userPageInfo(pageRequest));
+    public PageResult search(UserSearchParams userSearchParams) {
+
+        return PageUtils.getPageResult(userPageInfo(userSearchParams));
     }
 
-    private PageInfo<User> userPageInfo(PageRequest pageRequest) {
-        int pageNum = pageRequest.getPageNum();
-        int pageSize = pageRequest.getPageSize();
+    private PageInfo<User> userPageInfo(UserSearchParams userSearchParams) {
+        int pageNum = userSearchParams.getPageNum();
+        int pageSize = userSearchParams.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
-        List<User> allUser = userMapper.getAllUser();
+
+        User user = new User();
+        user.setUserName(userSearchParams.getUserName());
+        user.setAddress(userSearchParams.getAddress());
+        List<User> allUser = userMapper.getAllUser(user);
 
         return new PageInfo<>(allUser);
     }

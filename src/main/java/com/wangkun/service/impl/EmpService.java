@@ -88,6 +88,4 @@ public class EmpService implements IEmpService {
 
         return EmpPageInfoUtil.pageInfoUtil(allEmp);
     }
-
-
 }
