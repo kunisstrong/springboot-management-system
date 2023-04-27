@@ -24,6 +24,7 @@ public class DeptController {
      */
     @PostMapping("/list")
     public ResponseVo<PageResult> list(@RequestBody PageRequest pageQuery) {
+        System.out.println("");
         return ResponseVo.success(deptService.getAllDeptByPage(pageQuery));
     }
 

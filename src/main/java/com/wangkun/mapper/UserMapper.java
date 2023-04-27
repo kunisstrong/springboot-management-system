@@ -10,6 +10,9 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
+    /* 根据name查询用户信息 */
+    User getUserByUserName(@Param("userName") String userName);
+
     /* 查询所有user */
     List<User> getAllUser(@Param("user") User user);
 

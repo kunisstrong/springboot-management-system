@@ -5,12 +5,14 @@ spring:
       url: jdbc:mysql://localhost:3306/management_system
       username: root
       password: mysql123
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.wangkun.domain
   configuration:
     # 实体类属性与数据库字段匹配时忽略大小写
     map-underscore-to-camel-case: true
+
 server:
   port: 9100
 # pageHelper
