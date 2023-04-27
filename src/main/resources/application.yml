@@ -2,7 +2,7 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/management_system
+      url: jdbc:mysql://localhost:3306/graduation_project
       username: root
       password: mysql123
 mybatis:
