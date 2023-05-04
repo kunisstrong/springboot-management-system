@@ -4,11 +4,14 @@ import com.wangkun.domain.User;
 import com.wangkun.vo.PageRequest;
 import com.wangkun.vo.PageResult;
 import com.wangkun.vo.UserSearchParams;
-import net.sf.jsqlparser.statement.create.table.Index;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IUserService {
+    /* 登录 */
+    User login(String userName);
+
     /* 新增 */
     Boolean save(User user);
 

@@ -4,6 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wangkun.mapper.UserMapper">
 
+    <!--List<User> getUserByUserName(@Param("userName") String userName);-->
+    <select id="getUserByUserName" resultType="user">
+        select *
+        from t_user
+        where user_name = #{userName}
+    </select>
+
     <!--List<User> getAllUser(User user);-->
     <select id="getAllUser" resultType="user">
         select *
@@ -21,21 +28,21 @@
     <!--Boolean updateUser(@Param("user") User user);-->
     <update id="updateUser">
         update t_user
-        set user_name     = #{user.userName},
-            sex           = #{user.sex},
-            age           = #{user.age},
-            identity_card = #{user.identityCard},
-            email         = #{user.email},
-            address       = #{user.address},
-            status        = #{user.status},
-            create_time   = #{user.createTime}
+        set user_name   = #{user.userName},
+            sex         = #{user.sex},
+            age         = #{user.age},
+            id_card     = #{user.idCard},
+            email       = #{user.email},
+            address     = #{user.address},
+            status      = #{user.status},
+            create_time = #{user.createTime}
         where user_id = #{user.userId}
     </update>
 
     <!--Boolean insertUser(@Param("user") User user);-->
     <insert id="insertUser">
         insert into t_user
-        values (null, #{user.userName}, #{user.sex}, #{user.age}, #{user.identityCard}, #{user.email}, #{user.address},
+        values (null, #{user.userName}, #{user.sex}, #{user.age}, #{user.idCard}, #{user.email}, #{user.address},
                 #{user.status}, #{user.createTime})
     </insert>
     <!--Boolean delByIds(@Param("ids") ArrayList<Integer> ids);-->

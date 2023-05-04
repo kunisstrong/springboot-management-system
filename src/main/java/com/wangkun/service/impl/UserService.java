@@ -22,6 +22,11 @@ public class UserService implements IUserService {
     UserMapper userMapper;
 
     @Override
+    public User login(String userName) {
+        return userMapper.getUserByUserName(userName);
+    }
+
+    @Override
     public Boolean save(User user) {
         return userMapper.insertUser(user);
     }
@@ -38,7 +43,6 @@ public class UserService implements IUserService {
 
     @Override
     public PageResult search(UserSearchParams userSearchParams) {
-
         return PageUtils.getPageResult(userPageInfo(userSearchParams));
     }
 
