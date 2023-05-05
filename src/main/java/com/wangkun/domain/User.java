@@ -1,5 +1,6 @@
 package com.wangkun.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -15,5 +16,6 @@ public class User {
     private String email;
     private String address;
     private Integer status;
+//    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date createTime;
 }
