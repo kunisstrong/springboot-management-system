@@ -61,6 +61,6 @@ public class EmpController {
 
     @PostMapping("save")
     public ResponseVo<Boolean> saveEmp(@RequestBody Emp emp) {
-        return ResponseVo.success(empService.saveEmp(emp));
+        return ResponseVo.success(empService.saveEmp(emp)); // a=b&c=d
     }
 }
